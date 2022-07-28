@@ -5,7 +5,7 @@ from odoo import models, fields, api
 class datosGenerales(models.Model):
     _name = 'datosgenerales'
 
-    name = fields.Char(string="Nombre")
+    name = fields.Char(string="Solicitante")
     # departamento = fields.Many2one()
     tipo_de_peticion = fields.Selection(
         string='Tipo de peticion',
@@ -24,6 +24,12 @@ class datosGenerales(models.Model):
         comodel_name='solicitudes',
         inverse_name='solicitud_id',
         string='Solitudes')
+    direccion = fields.Many2one(comodel_name="directorio_municipal.directorio_municipal", string="Direccion")
+    unidad = fields.Many2one(comodel_name="directorio_municipal.directorio_municipal", string="Unidad")
+
+    """
+    FALTA AGREGAR EL id PARA QUE SEA VISIBLE Y CONSECUTIVO Y EL SE ENTREGA A: 
+    """
 
 
 class solicitudes(models.Model):
