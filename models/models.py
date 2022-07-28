@@ -51,9 +51,16 @@ class solicitudes(models.Model):
                                        ('diseño', 'Diseño'),
                                        ('prestamos', 'Prestamos'),
                                        ('administracion', 'Administracion')],
-                                      string="Tipo de Solicitud")
+                                      string="Tipo de Solicitud: ", default="computo")
     solicitud_id = fields.Many2one(comodel_name="datosgenerales")
     responsable = fields.Many2one(comodel_name="res.users")
+    fch_evento = fields.Date(string="Fecha Evento")
+    hora_evento = fields.Char(string="Hora del Evento")
+    hora_entrega = fields.Char(string="Hora de Entrega")
+
+    """
+       FALTA AGREGAR EL id PARA QUE SEA VISIBLE Y CONSECUTIVO
+    """
 
 class TipoDeMantenimiento(models.Model):
         _name = 'tipo_de_mantenimiento'

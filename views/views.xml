@@ -1,32 +1,129 @@
 <odoo>
-  <data>
-    <!--************************FORMULARIO DE DATOS GENERALES********************-->
-    <record id="datos_generales_view_form" model="ir.ui.view">
-        <field name="name">datos_generales_view_form</field>
-        <field name="model">datosgenerales</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <div class="oe_title">
-                        <h1>
-                            <field name="name" default_focus="1" placeholder="Nombre Del Solicitante" />
-                            <br/>
-                           <span>Recibe: <field name="recibe"/></span>
-                        </h1>
-                    </div>
-                    <group>
-                         <group>
-                        <field name="direccion"/>
-                              <field name="tipo_de_peticion"/>
+    <data>
+        <!--************************FORMULARIO DE DATOS GENERALES********************-->
+        <record id="datos_generales_view_form" model="ir.ui.view">
+            <field name="name">datos_generales_view_form</field>
+            <field name="model">datosgenerales</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Nombre Del Solicitante"/>
+                                <br/>
+                                <span>Recibe:
+                                    <field name="recibe"/>
+                                </span>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="direccion"/>
+                                <field name="tipo_de_peticion"/>
+                            </group>
+                            <group>
+                                <field name="unidad"/>
+                                <field name="fecha_hora"/>
+                            </group>
                         </group>
-                         <group>
-                        <field name="unidad"/>
-                        <field name="fecha_hora"/>
+                        <separator style="text-align: -webkit-center;" class="pt-5" string="Solicitudes"/>
+
+                        <field name="solitudes_ids"/>
+                        <!--                    <field name="solitudes_ids">
+                                            <tree>
+                                                <control>
+                                                    <create name="add_product_control" string="Agregar Peticion"/>
+                                                </control>
+                                            </tree>
+                                            </field>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--*******************************************************************************************************************-->
+
+        <!--*****************************************FORMULARIO DE SOLICITUDES*****************************************-->
+
+        <record id="solicitudes_view_form" model="ir.ui.view">
+            <field name="name">solicitudes_view_form</field>
+            <field name="model">solicitudes</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div>
+                            <label for="tipo_solicitud"/>
+                            <field name="tipo_solicitud" widget="radio"
+                                   style="-webkit-user-modify:read-write-plaintext-only;"
+                                   options="{'horizontal': true}"/>
+                        </div>
+                        <group col="12">
+                            <group colspan="4">
+                                <field name="equipo"
+                                       attrs="{'invisible':[('tipo_solicitud','in',['sistemas','diseño','administracion'])]}"/>
+                            </group>
+
+                            <group colspan="4">
+                                <field name="marca"
+                                       attrs="{'invisible':[('tipo_solicitud','in',['redes','sistemas','diseño','administracion'])]}"/>
+                            </group>
+
+                            <group colspan="4">
+                                <field name="serie"
+                                       attrs="{'invisible':[('tipo_solicitud','in',['sistemas','diseño','administracion'])]}"/>
+                            </group>
                         </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-  </data>
+                        <group col="12">
+                            <group colspan="6">
+                                <field name="modelo"
+                                       attrs="{'invisible':[('tipo_solicitud','in',['redes','sistemas','diseño','administracion'])]}"/>
+                            </group>
+
+                            <group colspan="6">
+                                <field name="inventario"
+                                       attrs="{'invisible':[('tipo_solicitud','in',['sistemas','diseño','administracion'])]}"/>
+                            </group>
+                        </group>
+
+                        <label for="descripcion"/>
+                        <field name="descripcion"/>
+
+                        <group>
+
+                            <group>
+                                <field name="ubicacion"/>
+                            </group>
+
+                            <group>
+                                <field name="ext" attrs="{'invisible':[('tipo_solicitud','in',['administracion','redes','sistemas','diseño'])]}"/>
+                            </group>
+
+                        </group>
+
+                        <div attrs="{'invisible':[('tipo_solicitud','not in','prestamos')]}">
+                            <group col="3">
+                                <group>
+                                    <field name="fch_evento"/>
+                                </group>
+                                <group>
+                                    <field name="hora_evento"/>
+                                </group>
+                                <group>
+                                    <field name="hora_entrega"/>
+                                </group>
+                            </group>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="situacion"/>
+                            </group>
+                        </group>
+                        <label for="responsable"/>
+                        <field name="responsable"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
 </odoo>
