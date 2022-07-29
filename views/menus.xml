@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
+        <!--******  acccion de ventana de datos generales-->
         <record id="menu_general_action" model="ir.actions.act_window">
             <field name="name">Datos Generales</field>
             <field name="type">ir.actions.act_window</field>
@@ -8,8 +10,59 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="menu_padre" name="DIC"  action="menu_general_action" sequence="1" web_icon="mun_dic,static/description/icon.png"/>
+        <!--******  acccion de ventana de catalogo de tipos de mantenimiento-->
+        <record id="menu_general_action_mantenimiento" model="ir.actions.act_window">
+            <field name="name">Catálogo de Tipo de Mantenimiento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tipo_de_mantenimiento</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="menu_general_action_mantenimiento1" model="ir.actions.act_window">
+            <field name="name">Catálogo de Mantenimiento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mantenimiento</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="menu_general_action_equipo" model="ir.actions.act_window">
+            <field name="name">Tipo de Equipo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tipo_de_equipo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="menu_general_action_situacion" model="ir.actions.act_window">
+            <field name="name">Catalogo de Situacion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">situacion</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <record id="menu_general_action_centro_servicio" model="ir.actions.act_window">
+            <field name="name">Centros de Servicio</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">centro_de_servicios</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--LOS CATALOGOS DE MATERIAL Y UNIDAD DE MEDIDA NO SE METEN POR QUE SE CONTEMPLA USAR EL
+        MODULO DE ALMACEN DE ODOO, Y EL DE DEPENDENCIAS SE USARA EL DIRECTORIO-->
+
+
+
+        <!-- MENU PRINCIPAL Y DE RECECPCION DE SERVICIOS -->
+        <menuitem id="menu_padre" name="DIC"  sequence="1" web_icon="mun_dic,static/description/icon.png"/>
+        <menuitem id="menu_recepcion" name="Recibir"  parent="menu_padre"/>
+        <menuitem id="menu_recepcion_1" name="Recepcion de Requerimientos"  action="menu_general_action"  parent="menu_recepcion"/>
+
+        <!-- MENU CATALOGOS -->
+        <menuitem id="menu_catalogos" name="Catalogos"  parent="menu_padre"/>
+        <menuitem id="menu_catalogos_1" name="Tipo de Mantenimiento"  action="menu_general_action_mantenimiento"  parent="menu_catalogos"/>
+        <menuitem id="menu_catalogos_2" name="Mantenimiento"  action="menu_general_action_mantenimiento1"  parent="menu_catalogos"/>
+        <menuitem id="menu_catalogos_3" name="Tipo de Equipo"  action="menu_general_action_equipo"  parent="menu_catalogos"/>
+        <menuitem id="menu_catalogos_4" name="Situacion"  action="menu_general_action_situacion"  parent="menu_catalogos"/>
+        <menuitem id="menu_catalogos_5" name="Centro de Servicio"  action="menu_general_action_centro_servicio"  parent="menu_catalogos"/>
 
 
     </data>

@@ -125,5 +125,22 @@
                 </form>
             </field>
         </record>
+
+        <record id="solicitudes_view_tree" model="ir.ui.view">
+            <field name="name">solicitudes_view_tree</field>
+            <field name="model">solicitudes</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="responsable"/>
+                    <field name="equipo"/>
+                    <field name="serie"/>
+                    <field name="marca"/>
+                    <field name="modelo"/>
+                    <field name="descripcion"/>
+                    <field name="situacion"/>
+                </tree>
+            </field>
+        </record>
+
     </data>
 </odoo>
