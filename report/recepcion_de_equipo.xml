@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="mitad_de_hoja" model="report.paperformat">
+            <field name="name">Mitad de hoja</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">32</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+
+        <report
+                id="recepcion_equipo"
+                model="datosgenerales"
+                string="Recepcion de Equipo"
+                name="mun_dic.recepcion_de_equipo"
+                file="mun_dic.recepcion_de_equipo"
+                report_type="qweb-pdf"
+                paperformat="mun_dic.mitad_de_hoja"/>
+
+        <template id="recepcion_de_equipo">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <div class="header">
+                                <p class="text-center">DEPARTAMENTO DE INFRAESTRUCTURA Y COMUNICACIONES</p>
+                                <p class="text-center">RECEPCION DE EQUIPO</p>
+                            </div>
+
+                            <div class="float-right">
+                                <p>FECHA:
+                                    <span t-field="doc.fecha_hora"/>
+                                </p>
+                            </div>
+                            <p>DEPENDENCIA:</p>
+                            <p>ENVIA EL SIGUIENTE EQUIPO PARA SU REVISION:</p>
+
+                            <table class="table">
+                                <thead>
+                                    <th>INV.</th>
+                                    <th>EQUIPO</th>
+                                    <th>MARCA</th>
+                                    <th>SOLICITUD</th>
+                                    <th>SERIE</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.solitudes_ids" t-as="l">
+                                        <td>
+                                            <span t-field="l.inventario"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.equipo"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.marca"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.descripcion"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.serie"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

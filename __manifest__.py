@@ -20,14 +20,16 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'directorio_municipal'],
+    'depends': ['base', 'directorio_municipal', 'project'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        #'views/catalogos.xml',
         'views/menus.xml',
+        'report/recepcion_de_equipo.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

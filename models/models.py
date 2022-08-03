@@ -6,7 +6,6 @@ class datosGenerales(models.Model):
     _name = 'datosgenerales'
 
     name = fields.Char(string="Solicitante")
-    # departamento = fields.Many2one()
     tipo_de_peticion = fields.Selection(
         string='Tipo de peticion',
         selection=[('m', 'Memo'),
@@ -26,10 +25,22 @@ class datosGenerales(models.Model):
         string='Solitudes')
     direccion = fields.Many2one(comodel_name="directorio_municipal.directorio_municipal", string="Direccion")
     unidad = fields.Many2one(comodel_name="directorio_municipal.directorio_municipal", string="Unidad")
+    status = fields.Many2one(comodel_name="situacion", default=lambda s: s._default_situacion())
 
     """
     FALTA AGREGAR EL id PARA QUE SEA VISIBLE Y CONSECUTIVO Y EL SE ENTREGA A: 
     """
+
+    @api.model
+    def _default_situacion(self):
+        """
+            funcion que busca en el modulo de situaciones, el stado de no atendida para ser
+            el default al crear una solicitud
+        """
+        return self.env['situacion'].search([('name', '=', 'NO ATENDIDA')], limit=1).id
+
+    def vale_salida(self):
+        return self.env.ref('mun_dic.recepcion_equipo').report_action(self)
 
 
 class solicitudes(models.Model):
@@ -74,8 +85,6 @@ class solicitudes(models.Model):
         return self.env['situacion'].search([('name', '=', 'NO ATENDIDA')], limit=1).id
 
 
-
-
 class TipoDeMantenimiento(models.Model):
         _name = 'tipo_de_mantenimiento'
 
@@ -114,3 +123,5 @@ class CentroDeServicios(models.Model):
         CATALOGO DE UNIDAD DE MEDIDA, PARA CUESTIONES DE INVENTARIO 
         CHECAR EL MODULO DE INVENTARIO DE ODOO Y VER COMO FUNCIONA
         """
+
+

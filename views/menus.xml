@@ -4,11 +4,30 @@
 
         <!--******  acccion de ventana de datos generales-->
         <record id="menu_general_action" model="ir.actions.act_window">
-            <field name="name">Datos Generales</field>
+            <field name="name">Solicitudes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">datosgenerales</field>
+            <field name="view_mode">form</field>
+            <!--field name="domain">[('status', '!=', ['ATENDIDA'])]</field-->
+        </record>
+
+        <record id="menu_general_action_2" model="ir.actions.act_window">
+            <field name="name">Solicitudes</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">datosgenerales</field>
             <field name="view_mode">tree,form</field>
+            <field name="domain">[('status', 'not in', ['ATENDIDA'])]</field>
         </record>
+
+        <record id="menu_general_action_3" model="ir.actions.act_window">
+            <field name="name">Solicitudes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">datosgenerales</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('status', '=', ['ATENDIDA'])]</field>
+        </record>
+
+
 
         <!--******  acccion de ventana de catalogo de tipos de mantenimiento-->
         <record id="menu_general_action_mantenimiento" model="ir.actions.act_window">
@@ -55,6 +74,8 @@
         <menuitem id="menu_padre" name="DIC"  sequence="1" web_icon="mun_dic,static/description/icon.png"/>
         <menuitem id="menu_recepcion" name="Recibir"  parent="menu_padre"/>
         <menuitem id="menu_recepcion_1" name="Recepcion de Requerimientos"  action="menu_general_action"  parent="menu_recepcion"/>
+        <menuitem id="menu_recepcion_2" name="Requerimientos Pendientes"  action="menu_general_action_2"  parent="menu_recepcion"/>
+        <menuitem id="menu_recepcion_3" name="Requerimientos Atendidos"  action="menu_general_action_3"  parent="menu_recepcion"/>
 
         <!-- MENU CATALOGOS -->
         <menuitem id="menu_catalogos" name="Catalogos"  parent="menu_padre"/>
@@ -63,6 +84,7 @@
         <menuitem id="menu_catalogos_3" name="Tipo de Equipo"  action="menu_general_action_equipo"  parent="menu_catalogos"/>
         <menuitem id="menu_catalogos_4" name="Situacion"  action="menu_general_action_situacion"  parent="menu_catalogos"/>
         <menuitem id="menu_catalogos_5" name="Centro de Servicio"  action="menu_general_action_centro_servicio"  parent="menu_catalogos"/>
+
 
 
     </data>

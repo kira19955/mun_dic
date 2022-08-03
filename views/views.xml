@@ -6,7 +6,14 @@
             <field name="model">datosgenerales</field>
             <field name="arch" type="xml">
                 <form>
+
+                    <header>
+                        <button string="Recepcion de Equipo" class="mb-2" name="vale_salida" type="object"/>
+                            <field name="status" widget="statusbar" options="{'clickable': '1'}" statusbar_visible=""/>
+                        </header>
+
                     <sheet>
+
                         <div class="oe_title">
                             <h1>
                                 <field name="name" default_focus="1" placeholder="Nombre Del Solicitante"/>
@@ -29,13 +36,6 @@
                         <separator style="text-align: -webkit-center;" class="pt-5" string="Solicitudes"/>
 
                         <field name="solitudes_ids"/>
-                        <!--                    <field name="solitudes_ids">
-                                            <tree>
-                                                <control>
-                                                    <create name="add_product_control" string="Agregar Peticion"/>
-                                                </control>
-                                            </tree>
-                                            </field>-->
                     </sheet>
                 </form>
             </field>
