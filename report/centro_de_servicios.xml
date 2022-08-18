@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="report_servicios"
+                model="centro_de_servicios"
+                string="Catalogo de Centros de Servicios"
+                name="mun_dic.centros_de_servicio_report"
+                file="mun_dic.centros_de_servicio_report"
+                report_type="qweb-pdf"/>
+
+        <template id="centros_de_servicio_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h1>hola</h1>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mun_dic_mun_dic,mun_dic.mun_dic,model_mun_dic_mun_dic,base.group_user,1,1,1,1
+access_mun_dic_mun_dic,mun_dic.mun_dic,model_datosgenerales,base.group_user,1,1,1,1
+access_mun_dic_mun_dic_1,mun_dic.mun_dic_1,model_solicitudes,base.group_user,1,1,1,1
+access_mun_dic_mun_dic_2,mun_dic.mun_dic_2,model_tipo_de_mantenimiento,base.group_user,1,1,1,1
+access_mun_dic_mun_dic_3,mun_dic.mun_dic_3,model_mantenimiento,base.group_user,1,1,1,1
+access_mun_dic_mun_dic_4,mun_dic.mun_dic_4,model_tipo_de_equipo,base.group_user,1,1,1,1
+access_mun_dic_mun_dic_5,mun_dic.mun_dic_5,model_situacion,base.group_user,1,1,1,1
+access_mun_dic_mun_dic_6,mun_dic.mun_dic_6,model_centro_de_servicios,base.group_user,1,1,1,1

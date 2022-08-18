@@ -27,6 +27,13 @@ class datosGenerales(models.Model):
     unidad = fields.Many2one(comodel_name="directorio_municipal.directorio_municipal", string="Unidad")
     status = fields.Many2one(comodel_name="situacion", default=lambda s: s._default_situacion())
 
+
+    # @api.onchange('direccion')
+    # def with_forest_cover_onchange(self):
+    #     todos = []
+    #     todos.append(self.env['directorio_municipal.directorio_municipal'].search([]))
+
+
     """
     FALTA AGREGAR EL id PARA QUE SEA VISIBLE Y CONSECUTIVO Y EL SE ENTREGA A: 
     """
@@ -41,6 +48,9 @@ class datosGenerales(models.Model):
 
     def vale_salida(self):
         return self.env.ref('mun_dic.recepcion_equipo').report_action(self)
+
+
+
 
 
 class solicitudes(models.Model):
@@ -116,6 +126,25 @@ class CentroDeServicios(models.Model):
         name = fields.Char(string="Descripción")
         tel = fields.Char(string="Teléfono")
         direccion = fields.Char(string="Dirección")
+
+class centro_de_servicio_aux(models.AbstractModel):
+    _name = 'report.mun_dic.centros_de_servicio_report'
+
+    @api.model
+    def get_report_values(self, docids, data=None):
+        centro_de_servicios_list = []
+        centro_de_servicios_data = {}
+        for elem in self.env['centro_de_servicios'].sudo().search([]):
+            centro_de_servicios_data = {
+                'name': str(elem.name if elem.name else ""),
+                'tel': str(elem.tel if elem.tel else ""),
+                'direccion': str(elem.direccion if elem.direccion else ""),
+            }
+        centro_de_servicios_list.append(centro_de_servicios_data)
+
+        return {
+            'docs': centro_de_servicios_list,
+        }
 
 
         """
