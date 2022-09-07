@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="ir.module.category" id="mun_dic.mun_dic_category">
-            <field name="name">DIC-INFRAESTRUCTURA</field>
+
+        <record model="ir.module.category" id="model_category_dic">
+            <field name="name">INFRAESTRUCTURA</field>
             <field name="sequence">1</field>
         </record>
 
-        <record model="ir.module.category" id="mun_dic.mun_dic_category_1">
-            <field name="name">DIC-INFRAESTRUCTURA</field>
+        <record model="ir.module.category" id="model_category_dic_dic">
+            <field name="name">INFRAESTRUCTURA</field>
             <field name="sequence">1</field>
-            <field name="parent_id" ref="mun_dic.mun_dic_category"/>
+            <field name="parent_id" ref="model_category_dic"/>
         </record>
+
 
         <record id="group_recepcion" model="res.groups">
-            <field name="name">Recepcion</field>
-            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
-            <field name="category_id" ref="mun_dic.mun_dic_category_1"/>
+            <field name="name">Recepcion-DIC</field>
+            <field name="category_id" ref="model_category_dic_dic"/>
+
         </record>
 
         <record id="group_tecnico" model="res.groups">
-            <field name="name">Tecnico</field>
-            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
-            <field name="category_id" ref="mun_dic.mun_dic_category_1"/>
+            <field name="name">Tecnico-DIC</field>
+            <field name="category_id" ref="model_category_dic_dic"/>
         </record>
 
         <record id="group_administrador_dic" model="res.groups">
             <field name="name">Administrador-dic</field>
-            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
-            <field name="category_id" ref="mun_dic.mun_dic_category_1"/>
+            <field name="category_id" ref="model_category_dic_dic"/>
         </record>
 
     </data>

@@ -15,7 +15,23 @@
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="web.external_layout">
                         <div class="page">
-                            <h1>hola</h1>
+                            <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Descripción</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Teléfono</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>Mark</td>
+      <td>Otto</td>
+
+    </tr>
+  </tbody>
+</table>
                         </div>
                     </t>
                 </t>
