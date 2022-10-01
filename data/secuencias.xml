@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--DATA CREADA PARA LAS SECUENCIAS-->
+        <record id="sequence_servicio" model="ir.sequence">
+            <field name="name">Secuencia de servicios dic</field>
+            <field name="implementation">no_gap</field>
+            <field name="code">secuencia.servicios.dic</field>
+            <field name="prefix"></field>
+            <field name="suffix"></field>
+            <field name="padding">0</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_peticion" model="ir.sequence">
+            <field name="name">Secuencia de peticiones dic</field>
+            <field name="implementation">no_gap</field>
+            <field name="code">secuencia.servicios.peticion</field>
+            <field name="prefix"></field>
+            <field name="suffix"></field>
+            <field name="padding">0</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>

@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+import logging
+from odoo.exceptions import UserError
+
+logger = logging.getLogger(__name__)
+
+
 
 
 class datosGenerales(models.Model):
@@ -27,11 +33,16 @@ class datosGenerales(models.Model):
     unidad = fields.Many2one(comodel_name="directorio_municipal.directorio_municipal", string="Unidad")
     status = fields.Many2one(comodel_name="situacion", default=lambda s: s._default_situacion())
 
+    num_presupuesto = fields.Char(string="Numero de presupuesto", copy=False)
 
-    # @api.onchange('direccion')
-    # def with_forest_cover_onchange(self):
-    #     todos = []
-    #     todos.append(self.env['directorio_municipal.directorio_municipal'].search([]))
+    ##funcion create necesita un decorador
+    @api.model
+    def create(self, variables):
+        logger.info("*** variables{0}".format(variables))
+        secuencia = self.env['ir.sequence']
+        correlativo = secuencia.next_by_code('secuencia.servicios.dic')
+        variables['num_presupuesto'] = correlativo
+        return super(datosGenerales, self).create(variables)
 
 
     """
@@ -78,6 +89,16 @@ class solicitudes(models.Model):
     fch_evento = fields.Date(string="Fecha Evento")
     hora_evento = fields.Char(string="Hora del Evento")
     hora_entrega = fields.Char(string="Hora de Entrega")
+    num_presupuesto = fields.Char(string="Numero de presupuesto", copy=False)
+
+    ##funcion create necesita un decorador
+    @api.model
+    def create(self, variables):
+        logger.info("*** variables{0}".format(variables))
+        secuencia = self.env['ir.sequence']
+        correlativo = secuencia.next_by_code('secuencia.servicios.peticion')
+        variables['num_presupuesto'] = correlativo
+        return super(solicitudes, self).create(variables)
 
     """
        FALTA AGREGAR EL id PARA QUE SEA VISIBLE Y CONSECUTIVO
